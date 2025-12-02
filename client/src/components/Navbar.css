@@ -1,18 +1,133 @@
+/* Navbar Container */
 .navbar {
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(10, 22, 40, 0.95);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: 1.2rem 2.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    0 2px 10px rgba(13, 71, 161, 0.2);
+  border-bottom: 1px solid rgba(33, 150, 243, 0.2);
   position: sticky;
   top: 0;
   z-index: 100;
   width: 100%;
 }
 
+/* Navbar Brand */
+.navbar-brand a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.navbar-brand a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #2196f3, #64b5f6);
+  transition: width 0.3s ease;
+}
+
+.navbar-brand a:hover::after {
+  width: 100%;
+}
+
+.navbar-brand a:hover {
+  color: #bbdefb;
+}
+
+/* Navbar Links */
+.navbar-links {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.navbar-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 8px 0;
+}
+
+.navbar-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #2196f3;
+  transition: width 0.3s ease;
+}
+
+.navbar-links a:hover::after {
+  width: 100%;
+}
+
+.navbar-links a:hover {
+  color: #bbdefb;
+}
+
+/* Logout Button */
+.btn-logout {
+  background: linear-gradient(135deg, #1565c0 0%, #1976d2 50%, #2196f3 100%);
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(21, 101, 192, 0.3);
+}
+
+.btn-logout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(135deg, #0d47a1 0%, #1565c0 50%, #1976d2 100%);
+  transition: width 0.3s ease;
+  z-index: 0;
+}
+
+.btn-logout:hover::before {
+  width: 100%;
+}
+
+.btn-logout:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(21, 101, 192, 0.4);
+}
+
+.btn-logout span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Menu Toggle (Mobile) */
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -31,6 +146,13 @@
   border-radius: 3px;
   transition: all 0.3s ease;
 }
+
+.menu-toggle:hover span {
+  background: #2196f3;
+}
+
+
+/* ==================== RESPONSIVE DESIGN ==================== */
 
 @media (max-width: 768px) {
   .navbar {
@@ -53,13 +175,14 @@
     width: 70%;
     max-width: 300px;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.98);
+    background: linear-gradient(180deg, #0a1628 0%, #1e3a5f 100%);
     flex-direction: column;
     justify-content: flex-start;
     padding: 80px 30px 30px;
     gap: 1.5rem;
     transition: right 0.3s ease;
-    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+    border-left: 1px solid rgba(33, 150, 243, 0.2);
   }
 
   .navbar-links.active {
@@ -71,11 +194,16 @@
     padding: 12px 0;
     width: 100%;
     text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(33, 150, 243, 0.15);
   }
 
   .navbar-links a::after {
     display: none;
+  }
+
+  .navbar-links a:hover {
+    color: #2196f3;
+    padding-left: 10px;
   }
 
   .btn-logout {
@@ -83,6 +211,7 @@
     padding: 12px 20px;
     font-size: 1rem;
     margin-top: 10px;
+    text-align: center;
   }
 }
 
@@ -108,105 +237,45 @@
   }
 }
 
-.navbar-brand a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.6rem;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  transition: all 0.3s ease;
-  position: relative;
+/* Focus States for Accessibility */
+.navbar-brand a:focus-visible,
+.navbar-links a:focus-visible,
+.btn-logout:focus-visible,
+.menu-toggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.5);
+  border-radius: 4px;
 }
 
-.navbar-brand a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #fff;
-  transition: width 0.3s ease;
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .navbar-brand a::after,
+  .navbar-links a::after {
+    transition: none;
+  }
+  
+  .btn-logout:hover,
+  .navbar-links a:hover {
+    transform: none;
+  }
+  
+  .navbar-links {
+    transition: none;
+  }
 }
 
-.navbar-brand a:hover::after {
-  width: 100%;
-}
-
-.navbar-links {
-  display: flex;
-  gap: 2.5rem;
-  align-items: center;
-}
-
-.navbar-links a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: 0.3px;
-  transition: all 0.3s ease;
-  position: relative;
-  padding: 8px 0;
-}
-
-.navbar-links a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #fff;
-  transition: width 0.3s ease;
-}
-
-.navbar-links a:hover::after {
-  width: 100%;
-}
-
-.navbar-links a:hover {
-  color: #fff;
-}
-
-.btn-logout {
-  background: #fff;
-  color: #000;
-  border: 2px solid #fff;
-  padding: 10px 24px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-logout::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background: #000;
-  transition: width 0.3s ease;
-  z-index: 0;
-}
-
-.btn-logout:hover::before {
-  width: 100%;
-}
-
-.btn-logout:hover {
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
-}
-
-.btn-logout span {
-  position: relative;
-  z-index: 1;
+/* Touch Devices */
+@media (hover: none) and (pointer: coarse) {
+  .btn-logout:hover {
+    transform: none;
+  }
+  
+  .btn-logout::before {
+    display: none;
+  }
+  
+  .navbar-brand a::after,
+  .navbar-links a::after {
+    display: none;
+  }
 }
