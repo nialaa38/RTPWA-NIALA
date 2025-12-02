@@ -148,7 +148,7 @@ function Profile({ setAuth }) {
                 </div>
               )}
             </div>
-            <h1>⚾ {user.username || 'Unknown User'}</h1>
+            <h1>🏐 {user.username || 'Unknown User'}</h1>
             <p>📧 {user.email || 'No email'}</p>
           </div>
 
@@ -179,8 +179,8 @@ function Profile({ setAuth }) {
           </div>
 
           <div className="profile-stats">
-            <h2>⚾ Baseball Stats</h2>
-            <p>Track your training progress, game performance, and equipment maintenance</p>
+            <h2>🏐 Volleyball Stats</h2>
+            <p>Track your training progress, match performance, and equipment maintenance</p>
             <div className="stats-grid-profile">
               <div className="stat-item highlight clickable" onClick={() => setShowAchievements(true)} title="Click to view achievements">
                 <span className="stat-icon">🏋️</span>
@@ -189,9 +189,9 @@ function Profile({ setAuth }) {
                 <span className="stat-badge">🏆</span>
               </div>
               <div className="stat-item highlight clickable" onClick={() => setShowAchievements(true)} title="Click to view achievements">
-                <span className="stat-icon">⚾</span>
+                <span className="stat-icon">🏐</span>
                 <span className="stat-number">{stats.gamesPlayed}</span>
-                <span className="stat-label">Games Played</span>
+                <span className="stat-label">Matches Played</span>
                 <span className="stat-badge">🏆</span>
               </div>
               <div className="stat-item highlight clickable" onClick={() => setShowAchievements(true)} title="Click to view achievements">

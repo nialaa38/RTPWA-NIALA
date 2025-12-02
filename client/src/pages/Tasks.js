@@ -101,22 +101,22 @@ function Tasks({ setAuth }) {
       
       <div className="tasks-content">
         <div className="tasks-header">
-          <h1>⚾ My Tasks</h1>
+          <h1>🏐 My Tasks</h1>
           <button className="btn-create" onClick={handleCreateTask}>
             + New Task
           </button>
         </div>
 
-        <div className="baseball-stats-summary">
+        <div className="volleyball-stats-summary">
           <div className="stat-box">
             <div className="stat-icon">🏋️</div>
             <div className="stat-value">{stats.trainingSessions}</div>
             <div className="stat-label">Training Sessions</div>
           </div>
           <div className="stat-box">
-            <div className="stat-icon">⚾</div>
+            <div className="stat-icon">🏐</div>
             <div className="stat-value">{stats.gamesPlayed}</div>
-            <div className="stat-label">Games Played</div>
+            <div className="stat-label">Matches Played</div>
           </div>
           <div className="stat-box">
             <div className="stat-icon">✅</div>
@@ -214,7 +214,7 @@ function Tasks({ setAuth }) {
 function getCategoryIcon(category) {
   const icons = {
     training: '🏋️',
-    game: '⚾',
+    game: '🏐',
     equipment: '🧤',
     team_meeting: '👥',
     other: '📌'

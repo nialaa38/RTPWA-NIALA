@@ -15,8 +15,8 @@ function OnboardingTutorial({ onComplete }) {
 
   const steps = [
     {
-      title: '⚾ Welcome to Baseball PWA!',
-      description: 'Your personal baseball task manager for training, games, and equipment tracking.',
+      title: '🏐 Welcome to Volleyball PWA!',
+      description: 'Your personal volleyball task manager for training, matches, and equipment tracking.',
       icon: '👋',
       position: 'center'
     },
@@ -28,25 +28,25 @@ function OnboardingTutorial({ onComplete }) {
     },
     {
       title: '✅ Manage Tasks',
-      description: 'Create, edit, and organize your baseball tasks. Filter by status: Pending, In Progress, or Completed.',
+      description: 'Create, edit, and organize your volleyball tasks. Filter by status: Pending, In Progress, or Completed.',
       icon: '✅',
       position: 'center'
     },
     {
       title: '🏷️ Task Categories',
-      description: 'Organize tasks by type: Training 🏋️, Games ⚾, Equipment 🧤, Team Meetings 👥, and more!',
+      description: 'Organize tasks by type: Training 🏋️, Matches 🏐, Equipment 🧤, Team Meetings 👥, and more!',
       icon: '🏷️',
       position: 'center'
     },
     {
       title: '👤 Your Profile',
-      description: 'View your account information and track your baseball stats.',
+      description: 'View your account information and track your volleyball stats.',
       icon: '👤',
       position: 'center'
     },
     {
       title: '🎉 You\'re All Set!',
-      description: 'Start managing your baseball activities like a pro. Click "Get Started" to begin!',
+      description: 'Start managing your volleyball activities like a pro. Click "Get Started" to begin!',
       icon: '🚀',
       position: 'center'
     }

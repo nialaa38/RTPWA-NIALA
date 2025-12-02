@@ -71,7 +71,7 @@ function InstallPWA() {
     <button 
       className="install-pwa-button" 
       onClick={handleInstallClick}
-      title="Install Baseball PWA"
+      title="Install Volleyball PWA"
     >
       <span className="install-icon">📥</span>
       <span className="install-text">Install App</span>

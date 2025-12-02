@@ -6,7 +6,7 @@ import Dashboard from './pages/Dashboard';
 import Tasks from './pages/Tasks';
 import Profile from './pages/Profile';
 import AuthCallback from './pages/AuthCallback';
-import BaseballGame from './pages/BaseballGame';
+import VolleyballGame from './pages/VolleyballGame';
 import './App.css';
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
         <Route path="/dashboard" element={isAuthenticated ? <Dashboard setAuth={setIsAuthenticated} /> : <Navigate to="/login" />} />
         <Route path="/tasks" element={isAuthenticated ? <Tasks setAuth={setIsAuthenticated} /> : <Navigate to="/login" />} />
         <Route path="/profile" element={isAuthenticated ? <Profile setAuth={setIsAuthenticated} /> : <Navigate to="/login" />} />
-        <Route path="/game" element={isAuthenticated ? <BaseballGame setAuth={setIsAuthenticated} /> : <Navigate to="/login" />} />
+        <Route path="/game" element={isAuthenticated ? <VolleyballGame setAuth={setIsAuthenticated} /> : <Navigate to="/login" />} />
         <Route path="/" element={<Navigate to={isAuthenticated ? "/dashboard" : "/login"} />} />
       </Routes>
     </Router>

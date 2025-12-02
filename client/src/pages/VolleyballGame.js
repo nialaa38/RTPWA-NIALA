@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
-import './BaseballGame.css';
+import './VolleyballGame.css';
 
 const API_URL = process.env.REACT_APP_API_URL || (process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000');
 
-function BaseballGame({ setAuth }) {
+function VolleyballGame({ setAuth }) {
   const navigate = useNavigate();
   const [gameState, setGameState] = useState('ready'); // ready, playing, hit, miss, gameOver
   const [score, setScore] = useState(0);
@@ -33,7 +33,7 @@ function BaseballGame({ setAuth }) {
     const handleKeyPress = (e) => {
       if (e.code === 'Space' && gameState === 'playing' && !isPaused) {
         e.preventDefault();
-        handleSwing();
+        handleSpike();
       }
       if (e.code === 'KeyP' && (gameState === 'playing' || gameState === 'hit' || gameState === 'miss')) {
         e.preventDefault();
@@ -55,8 +55,9 @@ function BaseballGame({ setAuth }) {
     };
   }, [gameState]);
 
+
   const loadHighScore = () => {
-    const saved = localStorage.getItem('baseballHighScore');
+    const saved = localStorage.getItem('volleyballHighScore');
     if (saved) {
       setHighScore(parseInt(saved));
     }
@@ -65,7 +66,7 @@ function BaseballGame({ setAuth }) {
   const saveHighScore = (newScore) => {
     if (newScore > highScore) {
       setHighScore(newScore);
-      localStorage.setItem('baseballHighScore', newScore.toString());
+      localStorage.setItem('volleyballHighScore', newScore.toString());
       return true;
     }
     return false;
@@ -100,14 +101,14 @@ function BaseballGame({ setAuth }) {
         setBallSpeed(20);
     }
     
-    throwBall();
+    serveBall();
   };
 
   const togglePause = () => {
     if (isPaused) {
       // Resume game
       setIsPaused(false);
-      throwBall(true); // Resume from paused position
+      serveBall(true); // Resume from paused position
     } else {
       // Pause game
       setIsPaused(true);
@@ -125,7 +126,7 @@ function BaseballGame({ setAuth }) {
     }
   };
 
-  const throwBall = (resumeFromPause = false) => {
+  const serveBall = (resumeFromPause = false) => {
     // Stop any existing animation
     if (gameLoopRef.current) {
       cancelAnimationFrame(gameLoopRef.current);
@@ -172,7 +173,7 @@ function BaseballGame({ setAuth }) {
     gameLoopRef.current = animationId;
   };
 
-  const handleSwing = () => {
+  const handleSpike = () => {
     if (gameState !== 'playing') return;
     
     if (gameLoopRef.current) {
@@ -205,17 +206,17 @@ function BaseballGame({ setAuth }) {
     // Determine hit quality
     let message = '';
     if (accuracy >= 95) {
-      message = '🔥 PERFECT HIT! +' + points;
+      message = '🔥 PERFECT SPIKE! +' + points;
     } else if (accuracy >= 85) {
-      message = '⚡ GREAT HIT! +' + points;
+      message = '⚡ GREAT SPIKE! +' + points;
     } else if (accuracy >= 70) {
-      message = '✨ GOOD HIT! +' + points;
+      message = '✨ GOOD SPIKE! +' + points;
     } else {
-      message = '👍 HIT! +' + points;
+      message = '👍 SPIKE! +' + points;
     }
     
     if (newCombo > 1) {
-      message += ` (${newCombo}x COMBO!)`;
+      message += ` (${newCombo}x RALLY!)`;
     }
     
     setGameMessage(message);
@@ -223,10 +224,11 @@ function BaseballGame({ setAuth }) {
     // Continue game after short delay
     setTimeout(() => {
       if (gameState !== 'gameOver') {
-        throwBall(false); // Start new ball from beginning
+        serveBall(false); // Start new ball from beginning
       }
     }, 800);
   };
+
 
   const handleMiss = () => {
     const newMissCount = totalMisses + 1;
@@ -239,7 +241,7 @@ function BaseballGame({ setAuth }) {
     
     setCombo(0);
     setTotalMisses(newMissCount);
-    setGameMessage('❌ MISS!');
+    setGameMessage('❌ OUT!');
     
     // Check if game over (3 misses)
     if (newMissCount >= 3) {
@@ -249,7 +251,7 @@ function BaseballGame({ setAuth }) {
     } else {
       setTimeout(() => {
         if (newMissCount < 3) {
-          throwBall(false); // Start new ball from beginning
+          serveBall(false); // Start new ball from beginning
         }
       }, 1000);
     }
@@ -276,8 +278,8 @@ function BaseballGame({ setAuth }) {
     try {
       const token = localStorage.getItem('token');
       await axios.post(`${API_URL}/api/tasks`, {
-        title: `Baseball Game - Score: ${score}`,
-        description: `Hits: ${totalHits}, Misses: ${totalMisses}, Combo: ${combo}`,
+        title: `Volleyball Game - Score: ${score}`,
+        description: `Spikes: ${totalHits}, Outs: ${totalMisses}, Rally: ${combo}`,
         category: 'game',
         priority: 'medium',
         status: 'completed'
@@ -306,13 +308,13 @@ function BaseballGame({ setAuth }) {
   };
 
   return (
-    <div className="baseball-game-page">
+    <div className="volleyball-game-page">
       <Navbar setAuth={setAuth} />
       
       <div className="game-container">
         <div className="game-header">
-          <h1>⚾ Baseball Batting Game</h1>
-          <p>Hit the ball when it reaches the strike zone!</p>
+          <h1>🏐 Volleyball Spike Game</h1>
+          <p>Spike the ball when it reaches the sweet spot!</p>
         </div>
 
         <div className="game-stats">
@@ -325,15 +327,15 @@ function BaseballGame({ setAuth }) {
             <span className="stat-value">{highScore}</span>
           </div>
           <div className="stat-box">
-            <span className="stat-label">Combo</span>
+            <span className="stat-label">Rally</span>
             <span className="stat-value">{combo}x</span>
           </div>
           <div className="stat-box">
-            <span className="stat-label">Hits</span>
+            <span className="stat-label">Spikes</span>
             <span className="stat-value">{totalHits}</span>
           </div>
           <div className="stat-box">
-            <span className="stat-label">Misses</span>
+            <span className="stat-label">Outs</span>
             <span className="stat-value">{totalMisses}/3</span>
           </div>
         </div>
@@ -362,13 +364,14 @@ function BaseballGame({ setAuth }) {
               </button>
             </div>
             <button className="start-btn" onClick={startGame}>
-              ⚾ Start Game
+              🏐 Start Game
             </button>
             <button className="back-btn" onClick={() => navigate('/dashboard')}>
               ← Back to Dashboard
             </button>
           </div>
         )}
+
 
         {(gameState === 'playing' || gameState === 'hit' || gameState === 'miss') && (
           <div className="game-field">
@@ -393,40 +396,40 @@ function BaseballGame({ setAuth }) {
               </div>
             )}
 
-            <div className="pitcher">
-              <div className="pitcher-icon">🧑‍🦱</div>
-              <div className="pitcher-label">Pitcher</div>
+            <div className="setter">
+              <div className="setter-icon">🧑‍🦱</div>
+              <div className="setter-label">Setter</div>
             </div>
 
             <div className="ball-path">
               <div 
-                className="baseball" 
+                className="volleyball" 
                 ref={ballRef}
                 style={{ left: `${ballPosition}%` }}
               >
-                ⚾
+                🏐
               </div>
             </div>
 
-            <div className="strike-zone">
+            <div className="spike-zone">
               <div className="zone-indicator">
                 <div className="zone-line left" style={{ left: `${hitZone.start}%` }}></div>
                 <div className="zone-line right" style={{ left: `${hitZone.end}%` }}></div>
-                <div className="zone-label">STRIKE ZONE</div>
+                <div className="zone-label">SPIKE ZONE</div>
               </div>
             </div>
 
-            <div className="batter">
-              <div className="batter-icon">🧍</div>
-              <div className="batter-label">You</div>
+            <div className="spiker">
+              <div className="spiker-icon">🧍</div>
+              <div className="spiker-label">You</div>
             </div>
 
             <button 
-              className="swing-btn" 
-              onClick={handleSwing}
+              className="spike-btn" 
+              onClick={handleSpike}
               disabled={gameState !== 'playing'}
             >
-              🏏 SWING!
+              💪 SPIKE!
             </button>
 
             {gameMessage && (
@@ -439,22 +442,22 @@ function BaseballGame({ setAuth }) {
 
         {gameState === 'gameOver' && (
           <div className="game-over">
-            <h2>⚾ Game Over!</h2>
+            <h2>🏐 Game Over!</h2>
             <div className="final-stats">
               <div className="final-stat">
                 <span className="final-label">Final Score</span>
                 <span className="final-value">{score}</span>
               </div>
               <div className="final-stat">
-                <span className="final-label">Total Hits</span>
+                <span className="final-label">Total Spikes</span>
                 <span className="final-value">{totalHits}</span>
               </div>
               <div className="final-stat">
-                <span className="final-label">Best Combo</span>
+                <span className="final-label">Best Rally</span>
                 <span className="final-value">{bestCombo}x</span>
               </div>
               <div className="final-stat">
-                <span className="final-label">Total Misses</span>
+                <span className="final-label">Total Outs</span>
                 <span className="final-value">{totalMisses}</span>
               </div>
               <div className="final-stat">
@@ -486,19 +489,19 @@ function BaseballGame({ setAuth }) {
         <div className="game-instructions">
           <h3>📖 How to Play</h3>
           <ul>
-            <li>⚾ Watch the ball move from left to right</li>
-            <li>🎯 Click "SWING!" or press SPACEBAR when ball is in strike zone</li>
+            <li>🏐 Watch the ball arc from setter to you</li>
+            <li>🎯 Click "SPIKE!" or press SPACEBAR when ball is in spike zone</li>
             <li>✨ Perfect timing = More points!</li>
-            <li>🔥 Build combos for bonus points</li>
-            <li>❌ 3 misses = Game Over</li>
+            <li>🔥 Build rallies for bonus points</li>
+            <li>❌ 3 outs = Game Over</li>
             <li>⏸️ Press P to pause, ESC to quit</li>
             <li>🏆 Beat your high score!</li>
           </ul>
           <div className="difficulty-info">
             <h4>🎚️ Difficulty Levels:</h4>
-            <p><strong>🟢 Easy:</strong> Slower ball, wider strike zone (20% width)</p>
+            <p><strong>🟢 Easy:</strong> Slower set, wider spike zone (20% width)</p>
             <p><strong>🟡 Medium:</strong> Normal speed, normal zone (10% width)</p>
-            <p><strong>🔴 Hard:</strong> Fast ball, narrow zone (6% width)</p>
+            <p><strong>🔴 Hard:</strong> Fast set, narrow zone (6% width)</p>
           </div>
         </div>
       </div>
@@ -506,4 +509,4 @@ function BaseballGame({ setAuth }) {
   );
 }
 
-export default BaseballGame;
+export default VolleyballGame;

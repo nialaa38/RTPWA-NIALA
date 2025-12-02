@@ -73,9 +73,9 @@ function AchievementsModal({ isOpen, onClose, stats }) {
       // Game Achievements
       {
         id: 'game_1',
-        title: 'First Game',
-        description: 'Play your first game',
-        icon: '⚾',
+        title: 'First Match',
+        description: 'Play your first match',
+        icon: '🏐',
         category: 'game',
         requirement: 1,
         current: stats.gamesPlayed || 0,
@@ -254,7 +254,7 @@ function AchievementsModal({ isOpen, onClose, stats }) {
   const getCategoryIcon = (category) => {
     const icons = {
       training: '🏋️',
-      game: '⚾',
+      game: '🏐',
       equipment: '🧤',
       team_meeting: '👥',
       other: '📌'

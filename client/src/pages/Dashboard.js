@@ -36,7 +36,7 @@ function Dashboard({ setAuth }) {
       const tasksData = response.data;
       setTasks(tasksData);
       
-      // Calculate baseball-specific statistics
+      // Calculate volleyball-specific statistics
       const completedTasks = tasksData.filter(t => t.status === 'completed');
       const trainingSessions = completedTasks.filter(t => t.category === 'training').length;
       const gamesPlayed = completedTasks.filter(t => t.category === 'game').length;
@@ -70,8 +70,8 @@ function Dashboard({ setAuth }) {
       
       <div className="dashboard-content">
         <div className="dashboard-header">
-          <h1>⚾ Baseball Dashboard</h1>
-          <p>Manage your training, games, and equipment</p>
+          <h1>🏐 Volleyball Dashboard</h1>
+          <p>Manage your training, matches, and equipment</p>
         </div>
 
         <div className="stats-grid">
@@ -85,7 +85,7 @@ function Dashboard({ setAuth }) {
           </div>
 
           <div className="stat-card highlight clickable" onClick={() => setShowAchievements(true)} title="Click to view achievements">
-            <div className="stat-icon">⚾</div>
+            <div className="stat-icon">🏐</div>
             <div className="stat-info">
               <h3>{stats.gamesPlayed || 0}</h3>
               <p>Games Played</p>
@@ -170,7 +170,7 @@ function Dashboard({ setAuth }) {
 function getCategoryIcon(category) {
   const icons = {
     training: '🏋️',
-    game: '⚾',
+    game: '🏐',
     equipment: '🧤',
     team_meeting: '👥',
     other: '📌'

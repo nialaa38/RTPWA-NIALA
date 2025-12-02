@@ -1,7 +1,7 @@
 {
-  "short_name": "Baseball PWA",
-  "name": "Baseball Task Manager",
-  "description": "Manage your baseball training, games, and equipment",
+  "short_name": "Volleyball PWA",
+  "name": "Volleyball Task Manager",
+  "description": "Manage your volleyball training, matches, and equipment",
   "icons": [
     {
       "src": "icon-192.png",
@@ -18,7 +18,7 @@
   ],
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#1e3a8a",
+  "theme_color": "#1a3a5c",
   "background_color": "#ffffff",
   "orientation": "portrait"
 }
