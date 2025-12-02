@@ -291,14 +291,16 @@ function VolleyballGame({ setAuth }) {
                 </div>
               </div>
 
-              {message && (
-                <div className={`hit-message ${message.includes('MISS') ? 'miss' : 'hit'}`}>
-                  {message}
+              {/* Fixed height message area to prevent layout shift */}
+              <div className="message-container">
+                <div className={`hit-message ${message ? (message.includes('MISS') ? 'miss' : 'hit') : ''}`}>
+                  {message || '\u00A0'}
                 </div>
-              )}
+              </div>
 
+              {/* Desktop spike button */}
               <button 
-                className="spike-button"
+                className="spike-button desktop-only"
                 onClick={handleHit}
                 disabled={gameState !== 'playing'}
               >
@@ -315,6 +317,19 @@ function VolleyballGame({ setAuth }) {
               </div>
 
               <p className="hint">Press SPACE to spike • P to pause</p>
+            </div>
+          )}
+
+          {/* Mobile touch zone - tap anywhere in bottom half to spike */}
+          {gameState === 'playing' && (
+            <div 
+              className="mobile-touch-zone"
+              onTouchStart={(e) => {
+                e.preventDefault();
+                handleHit();
+              }}
+            >
+              <span className="touch-hint">👆 TAP ANYWHERE TO SPIKE!</span>
             </div>
           )}
 

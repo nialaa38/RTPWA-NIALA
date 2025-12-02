@@ -336,25 +336,47 @@
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
 }
 
+/* Message Container - Fixed height to prevent layout shift */
+.message-container {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
 /* Hit Message */
 .hit-message {
   font-size: 1.3rem;
   font-weight: 700;
-  margin-bottom: 15px;
-  animation: popIn 0.3s ease;
+  min-height: 1.5em;
 }
 
 .hit-message.hit {
   color: #4caf50;
+  animation: popIn 0.3s ease;
 }
 
 .hit-message.miss {
   color: #f44336;
+  animation: popIn 0.3s ease;
 }
 
 @keyframes popIn {
   0% { transform: scale(0.5); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
+}
+
+/* Mobile Touch Zone - Tap anywhere to spike */
+.mobile-touch-zone {
+  display: none;
+}
+
+/* Desktop only spike button */
+.spike-button.desktop-only {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Spike Button */
@@ -1127,10 +1149,6 @@
     min-height: 48px;
   }
 
-  .spike-button {
-    min-height: 70px;
-  }
-
   .game-controls-new button {
     min-width: 48px;
     min-height: 48px;
@@ -1142,6 +1160,48 @@
   .dashboard-btn-new,
   .home-btn {
     min-height: 48px;
+  }
+
+  /* Hide desktop spike button on touch devices */
+  .spike-button.desktop-only {
+    display: none;
+  }
+
+  /* Show mobile touch zone on touch devices */
+  .mobile-touch-zone {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50vh;
+    background: linear-gradient(to top, rgba(21, 101, 192, 0.15) 0%, rgba(21, 101, 192, 0.05) 50%, transparent 100%);
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  .mobile-touch-zone:active {
+    background: linear-gradient(to top, rgba(21, 101, 192, 0.35) 0%, rgba(21, 101, 192, 0.15) 50%, transparent 100%);
+  }
+
+  .touch-hint {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    padding: 15px 25px;
+    background: rgba(21, 101, 192, 0.7);
+    border-radius: 30px;
+    animation: pulseHint 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseHint {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.02); }
   }
 
   /* Remove hover effects on touch devices */
@@ -1171,5 +1231,30 @@
   .game-controls-new button:active {
     background: #1976d2;
     color: white;
+  }
+
+  /* Adjust game area for touch zone */
+  .game-area {
+    margin-bottom: 0;
+  }
+
+  .instructions-card {
+    display: none;
+  }
+
+  /* Move controls above touch zone */
+  .game-controls-new {
+    position: relative;
+    z-index: 101;
+  }
+
+  /* Message container on mobile */
+  .message-container {
+    height: 35px;
+    margin-bottom: 10px;
+  }
+
+  .hit-message {
+    font-size: 1.1rem;
   }
 }
