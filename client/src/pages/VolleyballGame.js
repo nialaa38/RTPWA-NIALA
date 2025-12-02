@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaPlay, FaPause, FaRedo, FaHome, FaTrophy, FaVolleyballBall } from 'react-icons/fa';
@@ -9,7 +9,7 @@ const API_URL = process.env.REACT_APP_API_URL || (process.env.NODE_ENV === 'prod
 
 function VolleyballGame({ setAuth }) {
   const navigate = useNavigate();
-  const [gameState, setGameState] = useState('menu'); // menu, playing, paused, gameOver
+  const [gameState, setGameState] = useState('menu'); // menu, countdown, playing, paused, gameOver
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [lives, setLives] = useState(3);
@@ -19,6 +19,7 @@ function VolleyballGame({ setAuth }) {
   const [difficulty, setDifficulty] = useState('medium');
   const [message, setMessage] = useState('');
   const [totalHits, setTotalHits] = useState(0);
+  const [countdown, setCountdown] = useState(3);
 
   // Load high score
   useEffect(() => {
@@ -70,8 +71,22 @@ function VolleyballGame({ setAuth }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameState, ballPosition]);
 
+  // Countdown effect
+  useEffect(() => {
+    if (gameState !== 'countdown') return;
+    
+    if (countdown > 0) {
+      const timer = setTimeout(() => {
+        setCountdown(prev => prev - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else {
+      setGameState('playing');
+      setCountdown(3);
+    }
+  }, [gameState, countdown]);
+
   const startGame = () => {
-    setGameState('playing');
     setScore(0);
     setLives(3);
     setCombo(0);
@@ -79,6 +94,8 @@ function VolleyballGame({ setAuth }) {
     setBallPosition(50);
     setBallDirection(1);
     setMessage('');
+    setCountdown(3);
+    setGameState('countdown');
   };
 
   const handleHit = useCallback(() => {
@@ -243,6 +260,13 @@ function VolleyballGame({ setAuth }) {
               <button className="home-btn" onClick={() => navigate('/dashboard')}>
                 <FaHome /> Back to Dashboard
               </button>
+            </div>
+          )}
+
+          {gameState === 'countdown' && (
+            <div className="countdown-screen">
+              <div className="countdown-number">{countdown > 0 ? countdown : 'GO!'}</div>
+              <p>Get Ready!</p>
             </div>
           )}
 

@@ -611,3 +611,139 @@
     transform: none;
   }
 }
+
+
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 400px) {
+  .tasks-content {
+    padding: 15px 10px;
+  }
+
+  .tasks-header {
+    padding: 18px 15px;
+    border-radius: 12px;
+  }
+
+  .header-left h1 {
+    font-size: 1.2rem;
+  }
+
+  .header-left p {
+    font-size: 0.8rem;
+  }
+
+  .btn-create-new {
+    padding: 12px 18px;
+    font-size: 0.9rem;
+  }
+
+  .stats-row {
+    gap: 8px;
+  }
+
+  .mini-stat-card {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .mini-stat-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .mini-stat-value {
+    font-size: 1.2rem;
+  }
+
+  .mini-stat-label {
+    font-size: 0.7rem;
+  }
+
+  .search-box input {
+    padding: 12px 15px 12px 42px;
+    font-size: 0.9rem;
+  }
+
+  .search-icon {
+    left: 14px;
+  }
+
+  .category-select {
+    padding: 12px 15px 12px 38px;
+    font-size: 0.9rem;
+    min-width: 100%;
+  }
+
+  .status-tabs {
+    padding: 6px;
+    gap: 6px;
+  }
+
+  .status-tab {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+  }
+
+  .tab-count {
+    padding: 2px 6px;
+    font-size: 0.65rem;
+  }
+
+  .task-card-new {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .category-chip {
+    padding: 5px 10px;
+    font-size: 0.7rem;
+  }
+
+  .priority-chip {
+    padding: 4px 10px;
+    font-size: 0.65rem;
+  }
+
+  .task-title {
+    font-size: 1rem;
+  }
+
+  .task-description {
+    font-size: 0.8rem;
+  }
+
+  .task-card-footer {
+    padding-top: 12px;
+  }
+
+  .status-indicator {
+    font-size: 0.75rem;
+  }
+
+  .due-date {
+    font-size: 0.75rem;
+  }
+
+  .action-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .empty-state-new {
+    padding: 50px 20px;
+  }
+
+  .empty-icon {
+    font-size: 3rem;
+  }
+
+  .empty-state-new h3 {
+    font-size: 1.2rem;
+  }
+
+  .btn-create-empty {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+}

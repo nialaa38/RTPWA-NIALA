@@ -546,39 +546,130 @@
   color: #546e7a;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
+/* Responsive - Tablet */
+@media (max-width: 768px) {
   .game-wrapper {
     padding: 15px;
+    max-width: 100%;
+  }
+
+  .game-header-new {
+    padding: 15px 20px;
+  }
+
+  .game-area {
+    padding: 25px 20px;
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 600px) {
+  .game-wrapper {
+    padding: 10px;
   }
 
   .game-header-new {
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
     text-align: center;
+    padding: 15px;
   }
 
   .game-title h1 {
     font-size: 1.2rem;
   }
 
+  .game-scores {
+    gap: 25px;
+  }
+
   .difficulty-selector {
     flex-wrap: wrap;
+    gap: 8px;
   }
 
   .diff-btn {
-    padding: 8px 18px;
+    padding: 12px 20px;
     font-size: 0.9rem;
+    min-width: 80px;
+    /* Better touch target */
+    min-height: 44px;
   }
 
+  .game-area {
+    padding: 20px 15px;
+    min-height: auto;
+  }
+
+  /* Larger spike button for mobile touch */
   .spike-button {
-    padding: 18px 30px;
-    font-size: 1.1rem;
+    padding: 24px 30px;
+    font-size: 1.2rem;
+    min-height: 70px;
+    border-radius: 20px;
+    /* Prevent double-tap zoom */
+    touch-action: manipulation;
+  }
+
+  .spike-button:active:not(:disabled) {
+    transform: scale(0.97);
+    background: linear-gradient(135deg, #0d47a1, #1976d2);
   }
 
   .instruction-items {
     flex-direction: column;
     gap: 8px;
+  }
+
+  /* Hide keyboard hint on mobile */
+  .hint {
+    display: none;
+  }
+
+  .court {
+    height: 70px;
+    margin-bottom: 15px;
+  }
+
+  .ball {
+    font-size: 2.2rem;
+  }
+
+  .hit-message {
+    font-size: 1.1rem;
+    min-height: 30px;
+  }
+
+  .game-controls-new {
+    margin-bottom: 5px;
+  }
+
+  .game-controls-new button {
+    width: 50px;
+    height: 50px;
+    font-size: 1.1rem;
+    /* Better touch target */
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .play-btn,
+  .home-btn {
+    min-height: 50px;
+    touch-action: manipulation;
+  }
+
+  .menu-icon {
+    font-size: 3.5rem;
+  }
+
+  .menu-screen h2 {
+    font-size: 1.4rem;
+  }
+
+  .menu-screen p {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
   }
 }
 
@@ -591,5 +682,494 @@
   .play-btn:hover,
   .retry-btn:hover {
     transform: none;
+  }
+}
+
+
+/* Countdown Screen */
+.countdown-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.countdown-number {
+  font-size: 6rem;
+  font-weight: 700;
+  color: #0d47a1;
+  animation: countPulse 1s ease infinite;
+  text-shadow: 0 4px 20px rgba(21, 101, 192, 0.3);
+}
+
+@keyframes countPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.countdown-screen p {
+  font-size: 1.2rem;
+  color: #78909c;
+  margin-top: 15px;
+}
+
+/* Enhanced Mobile Responsiveness - Small phones */
+@media (max-width: 480px) {
+  .game-page {
+    /* Prevent pull-to-refresh during gameplay */
+    overscroll-behavior: contain;
+  }
+
+  .game-wrapper {
+    padding: 8px;
+  }
+
+  .game-header-new {
+    padding: 12px 15px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+
+  .game-title {
+    gap: 8px;
+  }
+
+  .game-title h1 {
+    font-size: 1.1rem;
+  }
+
+  .title-icon {
+    font-size: 1.3rem;
+  }
+
+  .score-value {
+    font-size: 1.2rem;
+  }
+
+  .game-stats-bar {
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .stat-pill {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    border-radius: 20px;
+  }
+
+  .game-area {
+    padding: 20px 12px;
+    min-height: auto;
+    border-radius: 16px;
+    margin-bottom: 10px;
+  }
+
+  .menu-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+
+  .menu-screen h2 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+
+  .menu-screen p {
+    font-size: 0.9rem;
+    margin-bottom: 18px;
+  }
+
+  .difficulty-selector {
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .diff-btn {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    min-height: 44px;
+    flex: 1;
+    max-width: 100px;
+  }
+
+  .play-btn {
+    padding: 16px 25px;
+    font-size: 1rem;
+    max-width: 220px;
+    min-height: 54px;
+  }
+
+  .home-btn {
+    font-size: 0.9rem;
+    min-height: 44px;
+  }
+
+  .court {
+    height: 65px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+  }
+
+  .hit-zone {
+    left: 32%;
+    width: 36%;
+  }
+
+  .ball {
+    font-size: 2rem;
+  }
+
+  /* Full-width spike button on mobile */
+  .spike-button {
+    width: 100%;
+    max-width: none;
+    padding: 22px 20px;
+    font-size: 1.15rem;
+    min-height: 65px;
+    border-radius: 16px;
+    margin-bottom: 12px;
+  }
+
+  .game-controls-new {
+    gap: 12px;
+    margin-bottom: 0;
+  }
+
+  .game-controls-new button {
+    width: 48px;
+    height: 48px;
+    font-size: 1rem;
+  }
+
+  .countdown-number {
+    font-size: 5rem;
+  }
+
+  .countdown-screen p {
+    font-size: 1.1rem;
+  }
+
+  .instructions-card {
+    padding: 12px 15px;
+    border-radius: 12px;
+  }
+
+  .instructions-card h3 {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+  }
+
+  .instruction-items {
+    font-size: 0.8rem;
+    gap: 6px;
+  }
+
+  /* Game Over - Mobile */
+  .gameover-screen h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .final-value {
+    font-size: 2.8rem;
+  }
+
+  .new-record {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .final-stats-grid {
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .final-stat {
+    font-size: 0.95rem;
+  }
+
+  .gameover-actions {
+    gap: 10px;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .retry-btn {
+    padding: 14px 20px;
+    font-size: 1rem;
+    min-height: 50px;
+  }
+
+  .menu-btn,
+  .dashboard-btn-new {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    min-height: 48px;
+  }
+
+  /* Pause overlay mobile */
+  .pause-overlay-new {
+    border-radius: 12px;
+  }
+
+  .pause-overlay-new h2 {
+    font-size: 1.3rem;
+  }
+
+  .pause-overlay-new button {
+    padding: 14px 30px;
+    min-height: 50px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+  .game-wrapper {
+    padding: 6px;
+  }
+
+  .game-header-new {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .game-title h1 {
+    font-size: 1rem;
+  }
+
+  .title-icon {
+    font-size: 1.2rem;
+  }
+
+  .game-scores {
+    gap: 15px;
+  }
+
+  .score-value {
+    font-size: 1.1rem;
+  }
+
+  .stat-pill {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    gap: 5px;
+  }
+
+  .game-area {
+    padding: 15px 10px;
+  }
+
+  .menu-icon {
+    font-size: 2.5rem;
+  }
+
+  .menu-screen h2 {
+    font-size: 1.2rem;
+  }
+
+  .diff-btn {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    min-width: 70px;
+  }
+
+  .play-btn {
+    padding: 14px 20px;
+    font-size: 0.95rem;
+  }
+
+  .court {
+    height: 55px;
+  }
+
+  .ball {
+    font-size: 1.8rem;
+  }
+
+  .spike-button {
+    padding: 18px 15px;
+    font-size: 1.05rem;
+    min-height: 60px;
+  }
+
+  .countdown-number {
+    font-size: 4rem;
+  }
+
+  .final-value {
+    font-size: 2.2rem;
+  }
+
+  .instructions-card {
+    padding: 10px 12px;
+  }
+}
+
+/* Landscape mode on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .game-wrapper {
+    padding: 8px;
+  }
+
+  .game-header-new {
+    padding: 8px 15px;
+    margin-bottom: 8px;
+  }
+
+  .game-title h1 {
+    font-size: 1rem;
+  }
+
+  .game-stats-bar {
+    margin-bottom: 8px;
+  }
+
+  .stat-pill {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+
+  .game-area {
+    padding: 15px;
+    min-height: auto;
+    margin-bottom: 8px;
+  }
+
+  .menu-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+
+  .menu-screen h2 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+
+  .menu-screen p {
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+  }
+
+  .difficulty-selector {
+    margin-bottom: 12px;
+  }
+
+  .diff-btn {
+    padding: 8px 15px;
+  }
+
+  .play-btn {
+    padding: 10px 20px;
+    margin-bottom: 8px;
+  }
+
+  .court {
+    height: 50px;
+    margin-bottom: 10px;
+  }
+
+  .ball {
+    font-size: 1.6rem;
+  }
+
+  .spike-button {
+    padding: 12px 20px;
+    min-height: 50px;
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  .countdown-number {
+    font-size: 3rem;
+  }
+
+  .countdown-screen {
+    padding: 20px;
+  }
+
+  .instructions-card {
+    display: none;
+  }
+
+  .gameover-screen h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .final-value {
+    font-size: 2rem;
+  }
+
+  .final-stats-grid {
+    margin-bottom: 15px;
+  }
+
+  .gameover-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .retry-btn,
+  .menu-btn,
+  .dashboard-btn-new {
+    padding: 10px 15px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Touch-specific improvements */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger touch targets */
+  .diff-btn {
+    min-height: 48px;
+  }
+
+  .spike-button {
+    min-height: 70px;
+  }
+
+  .game-controls-new button {
+    min-width: 48px;
+    min-height: 48px;
+  }
+
+  .play-btn,
+  .retry-btn,
+  .menu-btn,
+  .dashboard-btn-new,
+  .home-btn {
+    min-height: 48px;
+  }
+
+  /* Remove hover effects on touch devices */
+  .diff-btn:hover,
+  .play-btn:hover,
+  .retry-btn:hover,
+  .menu-btn:hover,
+  .dashboard-btn-new:hover,
+  .home-btn:hover,
+  .game-controls-new button:hover {
+    transform: none;
+  }
+
+  /* Active states for touch feedback */
+  .diff-btn:active {
+    background: linear-gradient(135deg, #1565c0, #2196f3);
+    color: white;
+    border-color: transparent;
+  }
+
+  .play-btn:active,
+  .retry-btn:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 10px rgba(21, 101, 192, 0.3);
+  }
+
+  .game-controls-new button:active {
+    background: #1976d2;
+    color: white;
   }
 }

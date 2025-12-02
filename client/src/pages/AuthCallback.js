@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import './AuthCallback.css';
 
 function AuthCallback({ setAuth }) {
   const [searchParams] = useSearchParams();
@@ -31,14 +32,17 @@ function AuthCallback({ setAuth }) {
   }, [searchParams, setAuth, navigate]);
 
   return (
-    <div style={{ 
-      display: 'flex', 
-      justifyContent: 'center', 
-      alignItems: 'center', 
-      height: '100vh',
-      color: 'white'
-    }}>
-      <p>Authenticating...</p>
+    <div className="auth-callback-page">
+      <div className="bg-shapes">
+        <div className="shape shape-1"></div>
+        <div className="shape shape-2"></div>
+        <div className="shape shape-3"></div>
+      </div>
+      <div className="callback-content">
+        <div className="loader-ring"></div>
+        <h2>Authenticating...</h2>
+        <p>Please wait while we sign you in</p>
+      </div>
     </div>
   );
 }

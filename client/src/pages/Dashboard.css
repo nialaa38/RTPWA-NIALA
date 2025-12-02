@@ -703,3 +703,132 @@
   outline: none;
   box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.4);
 }
+
+
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 400px) {
+  .dashboard-content {
+    padding: 15px 10px;
+  }
+
+  .welcome-section {
+    padding: 20px 15px;
+    border-radius: 14px;
+  }
+
+  .welcome-text h1 {
+    font-size: 1.1rem;
+  }
+
+  .welcome-text p {
+    font-size: 0.85rem;
+  }
+
+  .btn-primary-action,
+  .btn-secondary-action {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+
+  .stats-overview {
+    gap: 10px;
+  }
+
+  .stat-card-new {
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .stat-card-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .stat-value {
+    font-size: 1.4rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+  }
+
+  .dashboard-card {
+    border-radius: 14px;
+  }
+
+  .card-header {
+    padding: 15px;
+  }
+
+  .card-header h2 {
+    font-size: 0.95rem;
+  }
+
+  .card-body {
+    padding: 15px;
+  }
+
+  .task-item-new {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .task-category-badge {
+    width: 38px;
+    height: 38px;
+    font-size: 1.1rem;
+  }
+
+  .task-content h4 {
+    font-size: 0.85rem;
+  }
+
+  .task-meta {
+    font-size: 0.7rem;
+  }
+
+  .task-status-badge {
+    padding: 4px 8px;
+    font-size: 0.65rem;
+  }
+
+  .activity-stats {
+    gap: 10px;
+  }
+
+  .activity-item {
+    padding: 12px;
+  }
+
+  .activity-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+
+  .activity-value {
+    font-size: 1.1rem;
+  }
+
+  .activity-label {
+    font-size: 0.65rem;
+  }
+
+  .quick-actions {
+    gap: 10px;
+  }
+
+  .quick-action-btn {
+    padding: 18px 12px;
+    border-radius: 12px;
+  }
+
+  .action-icon {
+    font-size: 1.5rem;
+  }
+
+  .action-text {
+    font-size: 0.75rem;
+  }
+}
